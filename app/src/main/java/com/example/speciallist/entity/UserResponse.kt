@@ -14,6 +14,6 @@ data class UserResponse(
     @SerializedName("f_name") val firstName: String?,
     @SerializedName("l_name") val lastName: String?,
     @SerializedName("birthday") val birthday: String?,
-    @SerializedName("avatar_url") val avatar: String?,
+    @SerializedName("avatr_url") val avatar: String?,
     @SerializedName("specialty") val specialty : List<SpecialtyResponse>?
 ):Parcelable

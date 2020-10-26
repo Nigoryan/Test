@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speciallist.R
 import com.example.speciallist.entity.UserResponse
@@ -28,16 +27,16 @@ class SpecialtyFragment: Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            specialtyAdapter = SpecialtyAdapter(context, this)
+            specialtyAdapter = SpecialtyAdapter(this)
             rvSpec.layoutManager = LinearLayoutManager(activity)
             rvSpec.adapter = specialtyAdapter
             viewModel.getInformation()
-            viewModel.responseLiveData.observe(viewLifecycleOwner, Observer <List<UserResponse>> {
-                specialtyAdapter.setSpecialization(it)
+            viewModel.responseLiveData.observe(viewLifecycleOwner, {
+                specialtyAdapter.setSpecialization(it.toList())
             })
     }
 
-    override fun onItemClick(user: UserResponse) {
-        (activity as MainActivity).replaceFragment( R.id.fragment_container, UserFragment.newInstance(user))
+    override fun onItemClick(user: List<UserResponse>) {
+        (activity as MainActivity).replaceFragment( R.id.fragment_container, UserFragment.newInstance(user),"user")
     }
 }

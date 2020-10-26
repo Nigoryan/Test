@@ -2,6 +2,6 @@ package com.example.speciallist.view
 
 import com.example.speciallist.entity.UserResponse
 
-interface ItemClickListener {
-    fun onItemClick(user: List<UserResponse>)
+interface UserItemClickListener {
+    fun onItemClick(userDetailInform: UserResponse)
 }
